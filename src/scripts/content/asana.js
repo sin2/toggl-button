@@ -22,7 +22,8 @@ togglbutton.render('.details-pane-body:not(.toggl)', {observe: true}, function (
   link = togglbutton.createTimerLink({
     className: 'asana',
     description: descFunc,
-    projectName: projectFunc
+    projectName: projectFunc,
+    tags: getAsanaTags()
   });
 
   container.parentNode.insertBefore(link, container.nextSibling);
@@ -47,7 +48,8 @@ togglbutton.render('#right_pane__contents .SingleTaskPane:not(.toggl)', {observe
   link = togglbutton.createTimerLink({
     className: 'asana-new',
     description: descFunc,
-    projectName: projectFunc
+    projectName: projectFunc,
+    tags: getAsanaTags()
   });
 
   container.after(link);
@@ -67,7 +69,8 @@ togglbutton.render('.BoardCard.BoardColumnCardsContainer-item:not(.toggl)', {obs
     className: 'asana-board',
     description: description,
     projectName: project,
-    buttonType: 'minimal'
+    buttonType: 'minimal',
+    tags: getAsanaTags()
   });
 
   container.appendChild(link);
@@ -87,9 +90,23 @@ togglbutton.render('.SingleTaskTitleRow:not(.toggl)', {observe: true}, function 
     className: 'asana-board',
     description: description,
     projectName: project,
-    buttonType: 'minimal'
+    buttonType: 'minimal',
+    tags: getAsanaTags()
   });
 
   container.appendChild(link);
 });
+
+function getAsanaTags() {
+    var labels = [];
+    var label = null;
+    var labelElements = document.querySelectorAll('.Token-label');
+    for (var i = 0; i < labelElements.length; i++) {
+        label = labelElements[i].innerText;
+        if (label.trim().length > 0)
+            labels.push(label);
+    }
+
+    return labels;
+}
 
