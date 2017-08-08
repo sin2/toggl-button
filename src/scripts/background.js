@@ -379,7 +379,7 @@ var TogglButton = {
   createTimeEntry: function (timeEntry, sendResponse) {
     var project, start = new Date(),
       error = "",
-      defaultProject,
+      defaultProject = Db.getDefaultProject(),
       rememberProjectPer = Db.get('rememberProjectPer'),
       entry;
     TogglButton.$curService = (timeEntry || {}).service;
@@ -1640,3 +1640,14 @@ if (!FF) {
     }
   });
 }
+
+chrome.commands.onCommand.addListener(function (command) {
+  var entry = TogglButton.$latestStoppedEntry || {"type": "timeEntry", "service": "keyboard"};
+  if (command === "quick-start-stop-entry") {
+    if (TogglButton.$curEntry !== null) {
+      TogglButton.stopTimeEntry(TogglButton.$curEntry);
+    } else {
+      TogglButton.createTimeEntry(entry, null);
+    }
+  }
+});

@@ -101,6 +101,11 @@
     "name": "Doit",
     "clone": "true"
   },
+  "dokuwiki.org": {
+    "url": "*://*.dokuwiki.org/*",
+    "name": "DokuWiki",
+    "file": "dokuwiki.js"
+  },
   "draftin.com": {
     "url": "*://*.draftin.com/*",
     "name": "Draftin"
@@ -271,6 +276,11 @@
     "url": "*://*.onlyoffice.eu/*",
     "name": "OnlyOffice",
     "clone": "true"
+  },
+  "osticket.com": {
+    "url": "*://*.supportsystem.com/*",
+    "name": "osTicket",
+    "file": "osticket.js"
   },
   "phacility.com": {
     "url": "*://*.phacility.com/*",
